@@ -3,6 +3,8 @@ const app = express();
 const tourRouter = require("./routes/tourRouter.js");
 const userRouter = require("./routes/userRouter.js");
 const morgan=require('morgan')
+const authMiddleware=require('./middleware/auth.js');
+
 
 // app.use(tourRouter);
 // Middleware to parse JSON
@@ -12,7 +14,7 @@ app.use(morgan('short'))
 
 
 app.use('/api/tours', tourRouter);
-app.use('/api/users', userRouter);
+app.use('/api/users', authMiddleware, userRouter);
 
 
 const port = 4000;
