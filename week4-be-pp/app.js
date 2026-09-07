@@ -2,10 +2,14 @@ const express = require("express");
 const app = express();
 const tourRouter = require("./routes/tourRouter.js");
 const userRouter = require("./routes/userRouter.js");
+const morgan=require('morgan')
 
 // app.use(tourRouter);
 // Middleware to parse JSON
 app.use(express.json());
+app.use(morgan('short'))
+// app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+
 
 app.use('/api/tours', tourRouter);
 app.use('/api/users', userRouter);
